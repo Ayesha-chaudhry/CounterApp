@@ -1,9 +1,17 @@
-import {View, Text} from 'react-native';
+import { View, Text } from 'react-native';
 
-const Splash = () => {
-    return(
-        <View>
-            <Text>This is Splash Screen</Text>
+const Splash = (props) => {
+
+    setTimeout(() => {
+        props.navigation.replace("Main")
+    }, 3000);
+
+    return (
+        <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
+            <Text>
+                Splash Screen
+            </Text>
+
         </View>
     )
 }
