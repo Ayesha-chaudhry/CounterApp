@@ -9,7 +9,8 @@ const Main = () => {
         <View style={styles.mainContainer}>
             <LinearGradient
                 style={styles.box}
-                colors={['#89aded', '#76eef5']} />
+                colors={['#89aded', '#76eef5']} 
+            />
             <View style={styles.fistContainer}>
                 <Text style={styles.fistContainer_txtWrapper}>{counter}</Text>
             </View>
