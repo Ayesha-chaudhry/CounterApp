@@ -3,7 +3,9 @@ import { NavigationContainer } from '@react-navigation/native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import Splash from '../screens/Splash';
 import Main from '../screens/Main';
+import List from '../screens/List';
 import Detail from '../screens/Detail';
+
 
 
 
@@ -22,6 +24,11 @@ const Navigation = () => {
           options={{ headerShown: false }}
           name="Main"
           component={Main} />
+          
+        <Stack.Screen
+          name="List"
+          component={List} />
+          
           <Stack.Screen
           name='Detail'
           component={Detail}/>
