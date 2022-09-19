@@ -35,22 +35,28 @@ const List = (props) => {
     }
   }
   return (
-    <View st={{ flex: 1 }}>
+    <View style={{ flex: 1 }}>
       {refreshing ? <ActivityIndicator /> : null}
       <FlatList
         data={data}
         renderItem={({ item }) => {
-          const obj = JSON.parse(item[1])   //['key','value']
+          const obj = JSON.parse(item[1])
           return (
+
             <TouchableOpacity
               onPress={() => { onRemoveItem(item[0]) }}
-              style={{ padding: 20 }}
+              style={styles.card}
             >
-              <Text>{item[0]}</Text>
-              <Text>{obj.date}</Text>
-              <Text>{obj.selectedItem}</Text>
-              <Text>{obj.counter}</Text>
+              <View style={styles.card_right}>
+                <Text style={{ fontSize: 24, fontWeight: 'bold' }}>{obj.selectedItem ? obj.selectedItem : "Zikr"}</Text>
+                <Text style={{ fontSize: 16, marginTop: 20 }}>{obj.date}</Text>
+              </View>
+
+              <View style={styles.card_left}>
+                <Text style={{ fontSize: 32, fontWeight: 'bold' }}>{obj.counter}</Text>
+              </View>
             </TouchableOpacity >
+
           )
         }}
         refreshControl={
@@ -67,5 +73,37 @@ const List = (props) => {
 export default List
 
 const styles = StyleSheet.create({
+  card: {
+    Display: 'flex',
+    flexDirection: 'row',
+    alignSelf: 'center',
+    margin: 10,
+    width: '95%',
+    height: 110,
+    backgroundColor: 'white',
+    shadowColor: "#000",
+    shadowOffset: {
+      width: 1,
+      height: 0,
+    },
+    shadowOpacity: 2.25,
+    shadowRadius: 2.84,
+    elevation: 3,
+    borderColor: 'gray',
+    borderRadius: 12,
+    borderWidth: 0.6,
+  },
+  card_right: {
+    flex: 0.6,
+    flexDirection: 'column',
+    justifyContent: 'center',
+    alignItems: 'center'
+  },
+  card_left: {
+    flex: 0.4,
+    flexDirection: 'column',
+    justifyContent: 'center',
+    alignItems: 'center',
 
+  }
 })

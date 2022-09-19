@@ -33,13 +33,11 @@ const Splash = (props) => {
 
   return (
     <View style={styles.firstContainer} onLayoutRootView={onLayoutRootView}>
-      <View style={styles.secondContainer}>
-        <View style={styles.thirdContainer}>
-          <Image source={SPLASHSCR_ICON} style={styles.imageStyle} />
-        </View>
-        <Text style={styles.firstText}>Digital Tasbeeh</Text>
-        <Text style={styles.secondText}>Counter</Text>
+      <View style={styles.thirdContainer}>
+        <Image source={SPLASHSCR_ICON} style={styles.imageStyle} />
       </View>
+      <Text style={styles.firstText}>Digital Tasbeeh</Text>
+      <Text style={styles.secondText}>Counter</Text>
     </View>
   );
 };
@@ -50,11 +48,6 @@ const styles = StyleSheet.create({
     justifyContent: "center",
     alignItems: "center",
     backgroundColor: COLOR_WHITE,
-  },
-  secondContainer: {
-    alignItems: "center",
-    padding: 8,
-    display: "flex",
   },
   thirdContainer: {
     alignItems: "center",
