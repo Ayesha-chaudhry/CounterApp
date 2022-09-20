@@ -1,6 +1,5 @@
 import { StyleSheet, Text, TouchableOpacity, View, Image } from 'react-native'
 import { React, useState, useEffect } from 'react'
-import { LinearGradient } from 'expo-linear-gradient'
 import DropDownPicker from 'react-native-dropdown-picker'
 import AsyncStorage from '@react-native-async-storage/async-storage'
 import { v4 as uuid } from 'uuid';
@@ -45,9 +44,9 @@ const Main = (props) => {
 
     useEffect(() => {
         var curr_Date = new Date().getDate()
-        var curr_month = new Date().getMonth()
+        var curr_month = new Date().getMonth()+1
         var curr_year = new Date().getFullYear()
-        var hr = new Date().getHours()
+        var hr = new Date().getHours()%12
         var min = new Date().getMinutes()
         var sec = new Date().getSeconds()
         setDateTime(curr_Date + '/' + curr_month + '/' + curr_year + '  ' + hr + ':' + min + ':' + sec)
@@ -58,10 +57,6 @@ const Main = (props) => {
 
     return (
         <View style={styles.mainContainer}>
-            <LinearGradient
-                style={styles.box}
-                colors={['#89aded', '#76eef5']} 
-            />
             <View style={styles.fistContainer}>
                 <Text style={styles.fistContainer_txtWrapper}>{counter}</Text>
             </View>
@@ -95,7 +90,7 @@ const Main = (props) => {
                     min={0}
                     placeholder="آپ کیا ذکر کرنا چاہتے ہیں"
                     containerStyle={{ width: '80%', alignItems: 'center' }}
-                    onChangeValue={(t) => setSelectedItem(t)}
+                    onChangeValue={(t) => {setSelectedItem(t)}}
                 />
             </View>
             <View style={styles.thirdContainer}>
@@ -154,7 +149,6 @@ const styles = StyleSheet.create({
     fistContainer_txtWrapper: {
         fontSize: 80,
         fontWeight: 'bold',
-        color: '#ffffff'
     },
     secondContainer_txtWrapper: {
         fontSize: 18,
