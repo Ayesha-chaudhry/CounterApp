@@ -3,9 +3,9 @@ import { React, useState, useEffect } from 'react'
 import DropDownPicker from 'react-native-dropdown-picker'
 import AsyncStorage from '@react-native-async-storage/async-storage'
 import { v4 as uuid } from 'uuid';
-import Lottie from 'lottie-react-native';
 import AnimatedLottieView from 'lottie-react-native';
-
+import { BACKGROUND_IMG, SAVE_BTN } from '../../../res/drawables'
+import { COLOR_NAVY_BLUE, COLOR_WHITE } from '../../../res/strings';
 
 const Main = (props) => {
     const [counter, setCounter] = useState(0)
@@ -45,9 +45,9 @@ const Main = (props) => {
 
     useEffect(() => {
         var curr_Date = new Date().getDate()
-        var curr_month = new Date().getMonth()+1
+        var curr_month = new Date().getMonth() + 1
         var curr_year = new Date().getFullYear()
-        var hr = new Date().getHours()%12
+        var hr = new Date().getHours() % 12
         var min = new Date().getMinutes()
         var sec = new Date().getSeconds()
         setDateTime(curr_Date + '/' + curr_month + '/' + curr_year + '  ' + hr + ':' + min + ':' + sec)
@@ -58,9 +58,9 @@ const Main = (props) => {
 
     return (
         <ImageBackground
-        source={require('../../../assets/bg3.png')}
-      //  blurRadius={3}
-        style={styles.mainContainer}>
+            source={BACKGROUND_IMG}
+            //  blurRadius={3}
+            style={styles.mainContainer}>
             <View style={styles.fistContainer}>
                 <Text style={styles.fistContainer_txtWrapper}>{counter}</Text>
             </View>
@@ -76,12 +76,11 @@ const Main = (props) => {
                     }}
                     style={{ alignSelf: 'flex-end', marginEnd: 25 }}
                 >
-                <AnimatedLottieView
-                source={require('../../../assets/save.json')}
-                />
-                    <Image
-                        source={require('../../../assets/save.png')}
-                        style={{ width: 60, height: 60,marginBottom : 20 }}
+                    <AnimatedLottieView
+                        source={SAVE_BTN}
+                        autoPlay
+                        loop
+                        style={{ width: 80, height: 40, marginBottom: 20 }}
                     />
                 </TouchableOpacity>
                 <DropDownPicker
@@ -95,29 +94,29 @@ const Main = (props) => {
                     max={3}
                     min={0}
                     placeholder="آپ کیا ذکر کرنا چاہتے ہیں"
-                    placeholderStyle={{color : '#181465'}}
-                    style={{borderColor : '#181465'}}
+                    placeholderStyle={{ color: COLOR_NAVY_BLUE }}
+                    style={{ borderColor: COLOR_NAVY_BLUE }}
                     container
-                    arrowIconStyle={{color: '#181465'}}
-                    closeIconStyle={{color: '#181465'}}
+                    arrowIconStyle={{ color: COLOR_NAVY_BLUE }}
+                    closeIconStyle={{ color: COLOR_NAVY_BLUE }}
                     containerStyle={{ width: '80%', alignItems: 'center', }}
-                    textStyle={{color: '#181465'}}
-                    onChangeValue={(t) => {setSelectedItem(t)}}
+                    textStyle={{ color: COLOR_NAVY_BLUE }}
+                    onChangeValue={(t) => { setSelectedItem(t) }}
                 />
             </View>
             <View style={styles.thirdContainer}>
                 <TouchableOpacity
                     onPress={() => { setCounter(0) }}
                     style={{
-                        width: 80, height: 80, backgroundColor: "#fff", borderRadius: 100, justifyContent: 'center',
+                        width: 80, height: 80, backgroundColor: COLOR_WHITE, borderRadius: 100, justifyContent: 'center',
                         alignItems: 'center', position: 'absolute', top: 0, left: 10
                     }}>
-                    <Text style={styles.secondContainer_txtWrapper}>Reset</Text>
+                    <Text style={[styles.secondContainer_txtWrapper]}>Reset</Text>
                 </TouchableOpacity>
                 <TouchableOpacity
                     onPress={() => { setCounter(counter + 1) }}
                     style={{
-                        width: 200, height: 200, backgroundColor: "#fff", borderRadius: 100, justifyContent: 'center',
+                        width: 200, height: 200, backgroundColor: COLOR_WHITE, borderRadius: 100, justifyContent: 'center',
                         alignItems: 'center'
                     }}>
                     <Text style={styles.thirdContainer_txtWrapper}>Count</Text>
@@ -132,7 +131,6 @@ export default Main
 const styles = StyleSheet.create({
     mainContainer: {
         flex: 3,
-        backgroundColor:'#181465'
 
     },
     fistContainer: {
@@ -161,24 +159,23 @@ const styles = StyleSheet.create({
     },
     fistContainer_txtWrapper: {
         fontSize: 120,
-        fontWeight: 'bold',
-        color:'#fff',
+        color: COLOR_WHITE,
+        fontFamily: 'Roboto-Black'
     },
     secondContainer_txtWrapper: {
         fontSize: 18,
-        fontWeight: 'bold',
-        color: '#181465',
-        textAlign: 'center'
+        color: COLOR_NAVY_BLUE,
+        textAlign: 'center',
+        fontFamily : 'Roboto-Black'
     },
     saveContainer_txtWrapper: {
         fontSize: 18,
-        fontWeight: 'bold',
-        color: '#fff',
+        color: COLOR_WHITE,
         textAlign: 'center'
     },
     thirdContainer_txtWrapper: {
-        fontSize: 40,
-        fontWeight: 'bold',
-        color: '#181465'
+        fontSize: 48,
+        color: COLOR_NAVY_BLUE,
+        fontFamily: 'Roboto-Black'
     }
 })

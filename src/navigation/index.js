@@ -23,7 +23,8 @@ const Navigation = () => {
           
         <Stack.Screen
           name="List"
-          component={List} />
+          component={List}
+          />
           
       </Stack.Navigator>
 
