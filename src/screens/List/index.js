@@ -1,4 +1,4 @@
-import { FlatList, ScrollView, StyleSheet, Text, TouchableOpacity, View, ActivityIndicator, RefreshControl } from 'react-native'
+import { FlatList, ScrollView, StyleSheet, Text, TouchableOpacity, View, ActivityIndicator, RefreshControl, ImageBackground } from 'react-native'
 import { React, useState, useEffect } from 'react'
 import AsyncStorage from '@react-native-async-storage/async-storage'
 
@@ -24,8 +24,8 @@ const List = (props) => {
 
   const readData = async () => {
     try {
-      const keys = await AsyncStorage.getAllKeys(); // keys
-      const result = await AsyncStorage.multiGet(keys); // keys,time,slected,counter
+      const keys = await AsyncStorage.getAllKeys();
+      const result = await AsyncStorage.multiGet(keys);
       setData(result)
       setRefreshing(false)
 
@@ -35,7 +35,11 @@ const List = (props) => {
     }
   }
   return (
-    <View style={{ flex: 1 }}>
+    <ImageBackground
+      source={require('../../../assets/bg3.png')}
+      blurRadius={3}
+      style={{ flex: 1 }}
+    >
       {refreshing ? <ActivityIndicator /> : null}
       <FlatList
         data={data}
@@ -44,16 +48,16 @@ const List = (props) => {
           return (
 
             <TouchableOpacity
-              onPress={() => { onRemoveItem(item[0]) }}
+              onLongPress={() => { onRemoveItem(item[0]) }}
               style={styles.card}
             >
               <View style={styles.card_right}>
-                <Text style={{ fontSize: 24, fontWeight: 'bold' }}>{obj.selectedItem ? obj.selectedItem : "Zikr"}</Text>
-                <Text style={{ fontSize: 16, marginTop: 20 }}>{obj.date}</Text>
+                <Text style={{ fontSize: 24, fontWeight: 'bold', color: '#181465' }}>{obj.selectedItem ? obj.selectedItem : "Zikr"}</Text>
+                <Text style={{ fontSize: 16, marginTop: 20, color: '#181465' }}>{obj.date}</Text>
               </View>
 
               <View style={styles.card_left}>
-                <Text style={{ fontSize: 32, fontWeight: 'bold' }}>{obj.counter}</Text>
+                <Text style={{ fontSize: 32, fontWeight: 'bold', color: '#181465' }}>{obj.counter}</Text>
               </View>
             </TouchableOpacity >
 
@@ -66,7 +70,7 @@ const List = (props) => {
           />
         }
       />
-    </View>
+    </ImageBackground>
   )
 }
 
@@ -89,9 +93,7 @@ const styles = StyleSheet.create({
     shadowOpacity: 2.25,
     shadowRadius: 2.84,
     elevation: 3,
-    borderColor: 'gray',
     borderRadius: 12,
-    borderWidth: 0.6,
   },
   card_right: {
     flex: 0.6,

@@ -1,9 +1,10 @@
-import { StyleSheet, Text, TouchableOpacity, View, Image } from 'react-native'
+import { StyleSheet, Text, TouchableOpacity, View, Image, ImageBackground } from 'react-native'
 import { React, useState, useEffect } from 'react'
 import DropDownPicker from 'react-native-dropdown-picker'
 import AsyncStorage from '@react-native-async-storage/async-storage'
 import { v4 as uuid } from 'uuid';
-
+import Lottie from 'lottie-react-native';
+import AnimatedLottieView from 'lottie-react-native';
 
 
 const Main = (props) => {
@@ -56,7 +57,10 @@ const Main = (props) => {
 
 
     return (
-        <View style={styles.mainContainer}>
+        <ImageBackground
+        source={require('../../../assets/bg3.png')}
+      //  blurRadius={3}
+        style={styles.mainContainer}>
             <View style={styles.fistContainer}>
                 <Text style={styles.fistContainer_txtWrapper}>{counter}</Text>
             </View>
@@ -72,11 +76,13 @@ const Main = (props) => {
                     }}
                     style={{ alignSelf: 'flex-end', marginEnd: 25 }}
                 >
+                <AnimatedLottieView
+                source={require('../../../assets/save.json')}
+                />
                     <Image
-                        source={require('../../../assets/icon_fav.png')}
-                        style={{ width: 60, height: 60 }}
+                        source={require('../../../assets/save.png')}
+                        style={{ width: 60, height: 60,marginBottom : 20 }}
                     />
-                    <Text style={styles.secondContainer_txtWrapper}>Save</Text>
                 </TouchableOpacity>
                 <DropDownPicker
                     open={open}
@@ -89,7 +95,13 @@ const Main = (props) => {
                     max={3}
                     min={0}
                     placeholder="آپ کیا ذکر کرنا چاہتے ہیں"
-                    containerStyle={{ width: '80%', alignItems: 'center' }}
+                    placeholderStyle={{color : '#181465'}}
+                    style={{borderColor : '#181465'}}
+                    container
+                    arrowIconStyle={{color: '#181465'}}
+                    closeIconStyle={{color: '#181465'}}
+                    containerStyle={{ width: '80%', alignItems: 'center', }}
+                    textStyle={{color: '#181465'}}
                     onChangeValue={(t) => {setSelectedItem(t)}}
                 />
             </View>
@@ -97,7 +109,7 @@ const Main = (props) => {
                 <TouchableOpacity
                     onPress={() => { setCounter(0) }}
                     style={{
-                        width: 80, height: 80, backgroundColor: "#9600ff", borderRadius: 100, justifyContent: 'center',
+                        width: 80, height: 80, backgroundColor: "#fff", borderRadius: 100, justifyContent: 'center',
                         alignItems: 'center', position: 'absolute', top: 0, left: 10
                     }}>
                     <Text style={styles.secondContainer_txtWrapper}>Reset</Text>
@@ -105,13 +117,13 @@ const Main = (props) => {
                 <TouchableOpacity
                     onPress={() => { setCounter(counter + 1) }}
                     style={{
-                        width: 200, height: 200, backgroundColor: "#9600ff", borderRadius: 100, justifyContent: 'center',
+                        width: 200, height: 200, backgroundColor: "#fff", borderRadius: 100, justifyContent: 'center',
                         alignItems: 'center'
                     }}>
                     <Text style={styles.thirdContainer_txtWrapper}>Count</Text>
                 </TouchableOpacity>
             </View>
-        </View>
+        </ImageBackground>
     )
 }
 
@@ -120,6 +132,7 @@ export default Main
 const styles = StyleSheet.create({
     mainContainer: {
         flex: 3,
+        backgroundColor:'#181465'
 
     },
     fistContainer: {
@@ -147,18 +160,25 @@ const styles = StyleSheet.create({
         zIndex: -1
     },
     fistContainer_txtWrapper: {
-        fontSize: 80,
+        fontSize: 120,
         fontWeight: 'bold',
+        color:'#fff',
     },
     secondContainer_txtWrapper: {
         fontSize: 18,
         fontWeight: 'bold',
-        color: '#ffffff',
+        color: '#181465',
+        textAlign: 'center'
+    },
+    saveContainer_txtWrapper: {
+        fontSize: 18,
+        fontWeight: 'bold',
+        color: '#fff',
         textAlign: 'center'
     },
     thirdContainer_txtWrapper: {
         fontSize: 40,
         fontWeight: 'bold',
-        color: '#ffffff'
+        color: '#181465'
     }
 })
