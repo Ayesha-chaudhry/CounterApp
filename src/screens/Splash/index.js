@@ -1,15 +1,16 @@
-import { StyleSheet, Text, View, Image } from "react-native";
+import { StyleSheet, Text, View, Image, ImageBackground } from "react-native";
 import React from "react";
 import { useCallback } from "react";
 import { useFonts } from "expo-font";
 import {
-  COLOR_DarkGray,
-  COLOR_LIGHT_GRAY,
-  COLOR_WHITE,
-  FONT_ACUMIN_BOLD,
+  FONT_Roboto_Black,
+  FONT_Roboto_Bold,
+  FONT_Roboto_Light,
+  FONT_Roboto_Regular,
   FONT_SACRAMENTO,
   SPLASHSCR_ICON,
 } from "../../../res/drawables";
+import { COLOR_WHITE } from "../../../res/strings";
 
 const Splash = (props) => {
   setTimeout(() => {
@@ -18,7 +19,10 @@ const Splash = (props) => {
 
   const [fontsLoaded] = useFonts({
     "Sacramento-Regular": FONT_SACRAMENTO,
-    "Acumin-bold": FONT_ACUMIN_BOLD,
+    "Roboto-Black": FONT_Roboto_Black,
+    "Roboto-Bold": FONT_Roboto_Bold,
+    "Roboto-Regular": FONT_Roboto_Regular,
+    "Roboto-Light": FONT_Roboto_Light,
   });
 
   const onLayoutRootView = useCallback(async () => {
@@ -32,13 +36,15 @@ const Splash = (props) => {
   }
 
   return (
-    <View style={styles.firstContainer} onLayoutRootView={onLayoutRootView}>
+    <ImageBackground
+      source={require('../../../assets/bg3.png')}
+      style={styles.firstContainer} onLayoutRootView={onLayoutRootView}>
       <View style={styles.thirdContainer}>
         <Image source={SPLASHSCR_ICON} style={styles.imageStyle} />
       </View>
       <Text style={styles.firstText}>Digital Tasbeeh</Text>
       <Text style={styles.secondText}>Counter</Text>
-    </View>
+    </ImageBackground>
   );
 };
 
@@ -47,26 +53,30 @@ const styles = StyleSheet.create({
     flex: 1,
     justifyContent: "center",
     alignItems: "center",
-    backgroundColor: COLOR_WHITE,
   },
   thirdContainer: {
     alignItems: "center",
     justifyContent: "center",
     display: "flex",
   },
-  imageStyle: { width: 300, height: 250, resizeMode: "contain" },
+  imageStyle: {
+    width: 300,
+    height: 250,
+    resizeMode: "contain"
+  },
   firstText: {
-    fontSize: 40,
-    fontFamily: "Acumin-bold",
+    fontSize: 45,
+    fontFamily: "Roboto-Black",
     lineHeight: 40,
     alignSelf: "center",
-    color: COLOR_DarkGray,
+    color: COLOR_WHITE,
+    paddingTop: 20
   },
   secondText: {
-    fontSize: 30,
+    fontSize: 50,
     fontFamily: "Sacramento-Regular",
-    lineHeight: 40,
-    color: COLOR_LIGHT_GRAY,
+    lineHeight: 65,
+    color: COLOR_WHITE
   },
 });
 
